@@ -2,11 +2,11 @@ package com.hello.controller;
 
 import com.hello.entity.Test;
 import com.hello.service.HelloService;
+import com.hello.util.ResultEnum;
+import com.hello.vo.ResultVo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import com.hello.vo.HelloVo;
 
 import javax.inject.Inject;
@@ -49,6 +49,27 @@ public class HelloController {
         List<Test> helloVoTest =helloService.getAll();
         return helloVoTest;
     }
+
+    @RequestMapping(value="/save",method = RequestMethod.POST)
+    public Test saveTest(@RequestBody Test test) {
+        return helloService.save(test);
+    }
+
+
+    @RequestMapping(value = "/delete/{test_id}", method = RequestMethod.DELETE)
+    public ResultVo delete(@PathVariable("test_id") String test_id) throws Exception {
+        logger.debug("delete | test_id {} ", test_id);
+         String idDeleted =   helloService.delete(test_id);
+
+        ResultVo resultVo = new ResultVo();
+        resultVo.setResult(ResultEnum.OK.getValue());
+        resultVo.setData(idDeleted);
+        return  resultVo ;
+
+    }
+
+
+
 
     @RequestMapping("/param/{param}")
     public String param(@PathVariable("param") String param) {

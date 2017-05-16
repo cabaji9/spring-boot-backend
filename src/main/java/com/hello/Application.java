@@ -1,5 +1,6 @@
 package com.hello;
 
+import com.security.CorsFilter;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
@@ -18,14 +19,8 @@ public class Application {
 
 
     @Bean
-    public WebMvcConfigurerAdapter corsConfigurer() {
-        return new WebMvcConfigurerAdapter() {
-
-            @Override
-            public void addCorsMappings(CorsRegistry registry) {
-                registry.addMapping("/**");
-            }
-        };
+    public CorsFilter corsFilter() {
+        return new CorsFilter();
     }
 
 }

@@ -44,3 +44,33 @@ java -Xdebug -Xrunjdwp:server=y,transport=dt_socket,address=8000,suspend=n -jar 
 
 ```
 
+
+
+### INSTALACION DE BASE DE DATOS
+
+Una vez que ya se tenga la base de datos
+crear usuario y la base.
+
+```
+CREATE USER deep WITH
+  LOGIN
+  SUPERUSER
+  INHERIT
+  CREATEDB
+  CREATEROLE
+  NOREPLICATION;
+
+
+CREATE DATABASE deep
+WITH
+OWNER = deep
+ENCODING = 'UTF8'
+LC_COLLATE = 'C'
+LC_CTYPE = 'C'
+TABLESPACE = pg_default
+CONNECTION LIMIT = -1 TEMPLATE template0;
+
+
+ALTER USER deep WITH PASSWORD 'deep';
+
+``

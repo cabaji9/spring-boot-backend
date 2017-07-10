@@ -9,6 +9,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.*;
 import com.hello.vo.HelloVo;
 
+
 import javax.inject.Inject;
 import java.util.ArrayList;
 import java.util.List;
@@ -30,7 +31,7 @@ public class HelloController {
     }
 
 
-    @RequestMapping("/data")
+    @RequestMapping(value="/data",method = RequestMethod.GET)
     public List<HelloVo> data() {
         List<HelloVo> helloVoList = new ArrayList<>();
 
@@ -44,7 +45,7 @@ public class HelloController {
         return helloVoList;
     }
 
-    @RequestMapping("/test")
+    @RequestMapping(value="/test",method = RequestMethod.GET)
     public List<Test> obtainTest() {
         List<Test> helloVoTest =helloService.getAll();
         return helloVoTest;
